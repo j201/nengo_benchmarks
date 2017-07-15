@@ -49,5 +49,6 @@ class CommunicationChannel(pytry.NengoTrial):
             plt.plot(sim.trange(), ideal, ls='--')
             plt.ylim(-1, 1)
 
-        rmse = np.sqrt(np.mean((sim.data[self.pOutput] - ideal)**2))
+        end = min(sim.data[self.pOutput].size, ideal.size)
+        rmse = np.sqrt(np.mean((sim.data[self.pOutput][:end] - ideal[:end])**2))
         return dict(rmse=rmse)

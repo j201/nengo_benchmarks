@@ -60,5 +60,6 @@ class CircularConvolution(pytry.NengoTrial):
             plt.plot(sim.trange(), ideal, ls='--')
             plt.axvline(index*p.dt, c='#aaaaaa')
 
-        rmse = np.sqrt(np.mean((sim.data[self.probe][index:]-ideal[index:])**2))
+        end = min(sim.data[self.probe].size, ideal.size)
+        rmse = np.sqrt(np.mean((sim.data[self.probe][index:end]-ideal[index:end])**2))
         return dict(rmse=rmse)
